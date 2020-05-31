@@ -1,11 +1,14 @@
 import React from "react";
 import "./styles.css";
-
+import {Navbar, NavbarBrand} from 'reactstrap'
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <Navbar dark color="primary">
+        <div className="container">
+          <NavbarBrand href="/">Nirav</NavbarBrand>
+        </div>
+      </Navbar>
     </div>
   );
 }
