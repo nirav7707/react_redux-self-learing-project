@@ -18,7 +18,7 @@ class Projection extends Component {
     if (dish != null) {
       return (
         <div className="row">
-          <div className="col-12 col-md-5 m-1 ">
+          <div className="col-12 col-md-5">
             <Card>
               <CardImg width="100%" src={dish.image} alt={dish.name} />
               <CardBody>
@@ -29,7 +29,7 @@ class Projection extends Component {
               </CardBody>
             </Card>
           </div>
-          <div className="col-12 col-md-5 m-4 ">
+          <div className="col-12 col-md-5 ml-3">
             <h3>Comments</h3>
             {this.props.dish.comments.map(comment => {
               return (
@@ -37,7 +37,12 @@ class Projection extends Component {
                   <div>{comment.comment}</div>
                   <div>
                     <span>--</span>
-                    {comment.author}, {comment.date}
+                    {comment.author},{" "}
+                    {new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit"
+                    }).format(new Date(Date.parse(comment.date)))}
                     <hr />
                     <br />
                   </div>
@@ -54,7 +59,7 @@ class Projection extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="row">{this.renderDish(this.props.dish)}</div>
       </div>
     );
