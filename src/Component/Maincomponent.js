@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
-import { Navbar, NavbarBrand } from "reactstrap";
+import Header from "./HeaderComponent";
 import Menu from "./menuComponent";
 import Projection from "./dataprojection";
 import { DISHES } from "./deshes";
+import Footer from "./FooterComponent";
+import Home from "./HomeComponent";
+import { Switch, Route, Redirect } from "react-router-dom";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -19,18 +22,28 @@ class Main extends Component {
   }
 
   render() {
+    const HomePage = () => {
+      return <Home />;
+    };
     return (
       <div>
-        <Navbar dark color="danger">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          </div>
-        </Navbar>
+        <Header />
         <div className="container">
-          <Menu
-            dishes={this.state.dishes}
-            onClick={dishId => this.onDishselect(dishId)}
-          />
+          <Switch>
+            <Route path="/home" component={HomePage} />
+            <Route
+              exact
+              path="/menu"
+              component={() => (
+                <Menu
+                  dishes={this.state.dishes}
+                  onClick={dishId => this.onDishselect(dishId)}
+                />
+              )}
+            />
+            <Redirect to="/home" />
+          </Switch>
+
           <Projection
             dish={
               this.state.dishes.filter(
@@ -39,6 +52,7 @@ class Main extends Component {
             }
           />
         </div>
+        <Footer />
       </div>
     );
   }
