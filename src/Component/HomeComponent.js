@@ -9,7 +9,6 @@ import {
 } from "reactstrap";
 
 function RenderCard({ item }) {
-  console.log({ item });
   return (
     <Card>
       <CardImg src={item.image} alt={item.name} />

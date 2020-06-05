@@ -33,8 +33,23 @@ class Main extends Component {
       return (
         <Home
           dish={this.state.dishes.filter(dish => dish.featured)[0]}
-          promotion={this.state.comments.filter(promo => promo.featured)[0]}
+          promotion={this.state.promotions.filter(promo => promo.featured)[0]}
           leader={this.state.leaders.filter(leader => leader.featured)[0]}
+        />
+      );
+    };
+
+    const dishwithId = ({ match }) => {
+      return (
+        <Projection
+          dish={
+            this.state.dishes.filter(
+              dish => dish.id === parseInt(match.params.dishId, 10)
+            )[0]
+          }
+          comments={this.state.comments.filter(
+            comment => comment.dishId === parseInt(match.params.dishId, 10)
+          )}
         />
       );
     };
@@ -54,17 +69,10 @@ class Main extends Component {
                 />
               )}
             />
+            <Route path="/menu/:dishId" component={dishwithId} />
             <Route path="/contectus" component={Contectus} />
             <Redirect to="/home" />
           </Switch>
-
-          <Projection
-            dish={
-              this.state.dishes.filter(
-                dish => dish.id === this.state.selectedDish
-              )[0]
-            }
-          />
         </div>
         <Footer />
       </div>
