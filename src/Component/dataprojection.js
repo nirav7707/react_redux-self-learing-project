@@ -31,7 +31,7 @@ class Projection extends Component {
           </div>
           <div className="col-12 col-md-5 ml-3">
             <h3>Comments</h3>
-            {this.props.dish.comments.map(comment => {
+            {this.props.comments.map(comment => {
               return (
                 <div key={comment.id}>
                   <div>{comment.comment}</div>

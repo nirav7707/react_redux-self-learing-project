@@ -4,14 +4,21 @@ import Header from "./HeaderComponent";
 import Menu from "./menuComponent";
 import Projection from "./dataprojection";
 import { DISHES } from "./deshes";
+import { COMMENTS } from "./comments";
+import { LEADERS } from "./Leaders";
+import { PROMOTIONS } from "./promotion";
 import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
+import Contectus from "./contectus";
 import { Switch, Route, Redirect } from "react-router-dom";
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dishes: DISHES,
+      comments: COMMENTS,
+      leaders: LEADERS,
+      promotions: PROMOTIONS,
       selectedDish: null
     };
   }
@@ -23,7 +30,13 @@ class Main extends Component {
 
   render() {
     const HomePage = () => {
-      return <Home />;
+      return (
+        <Home
+          dish={this.state.dishes.filter(dish => dish.featured)[0]}
+          promotion={this.state.comments.filter(promo => promo.featured)[0]}
+          leader={this.state.leaders.filter(leader => leader.featured)[0]}
+        />
+      );
     };
     return (
       <div>
@@ -41,6 +54,7 @@ class Main extends Component {
                 />
               )}
             />
+            <Route path="/contectus" component={Contectus} />
             <Redirect to="/home" />
           </Switch>
 
