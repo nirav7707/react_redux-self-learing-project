@@ -9,6 +9,8 @@ import {
   CardText,
   Card
 } from "reactstrap";
+
+import CommentForm from "./commentForm";
 class Projection extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +51,7 @@ class Projection extends Component {
                 </div>
               );
             })}
+            <CommentForm />
           </div>
         </div>
       );
