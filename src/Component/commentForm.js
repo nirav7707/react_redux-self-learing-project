@@ -44,7 +44,7 @@ const CommentForm = props => {
               </Label>
               <Col md={10}>
                 <Control.select
-                  model="..ratinh"
+                  model=".rating"
                   className="form-control"
                   type="select"
                   name="rating"
