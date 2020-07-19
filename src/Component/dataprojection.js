@@ -14,6 +14,8 @@ import {
   Button,
   Row
 } from "reactstrap";
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../redux/baseUrl";
 
 import { Control, LocalForm, Errors } from "react-redux-form";
 
@@ -133,13 +135,33 @@ class CommentForm extends Component {
 }
 
 class Projection extends Component {
+  constructor(props) {
+    super(props);
+  }
   renderDish(dish) {
-    if (dish != null) {
+    if (this.props.isLoading) {
+      return (
+        <div className="container">
+          <div className="row">
+            <Loading />
+          </div>
+        </div>
+      );
+    } else if (this.props.errMess) {
+      return (
+        <div className="container">
+          <div className="row">
+            <h4>{this.props.errMess}</h4>
+          </div>
+        </div>
+      );
+    }
+    if (this.props.dish != null) {
       return (
         <div className="row">
           <div className="col-12 col-md-5">
             <Card>
-              <CardImg width="100%" src={dish.image} alt={dish.name} />
+              <CardImg width="100%" src={baseUrl+dish.image} alt={dish.name} />
               <CardBody>
                 <CardTitle>
                   <b>{dish.name}</b>

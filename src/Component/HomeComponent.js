@@ -7,34 +7,51 @@ import {
   CardTitle,
   CardSubtitle
 } from "reactstrap";
-
-function RenderCard({ item }) {
-  return (
-    <Card>
-      <CardImg src={item.image} alt={item.name} />
-      <CardBody>
-        <CardTitle>{item.name}</CardTitle>
-        {item.designation ? (
-          <CardSubtitle>{item.designation}</CardSubtitle>
-        ) : null}
-        <CardText>{item.description}</CardText>
-      </CardBody>
-    </Card>
-  );
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../redux/baseUrl";
+function RenderCard({ item, isLoading, errMess }) {
+  if (isLoading) {
+    return <Loading />;
+  } else if (errMess) {
+    return <h4>{errMess}</h4>;
+  } else
+    return (
+      <Card>
+        <CardImg src={baseUrl + item.image} alt={item.name} />
+        <CardBody>
+          <CardTitle>{item.name}</CardTitle>
+          {item.designation ? (
+            <CardSubtitle>{item.designation}</CardSubtitle>
+          ) : null}
+          <CardText>{item.description}</CardText>
+        </CardBody>
+      </Card>
+    );
 }
-
 function Home(props) {
   return (
     <div className="container">
       <div className="row">
         <div className="col-12 col-md ">
-          <RenderCard item={props.dish} />
+          <RenderCard
+            item={props.dish}
+            isLoading={props.dishesLoading}
+            errMess={props.dishesErrMess}
+          />
         </div>
         <div className="col-12 col-md">
-          <RenderCard item={props.promotion} />
+          <RenderCard
+            item={props.promotion}
+            isLoading={props.promoLoading}
+            errMess={props.promoErrMess}
+          />
         </div>
         <div className="col-12 col-md">
-          <RenderCard item={props.leader} />
+          <RenderCard
+            item={props.leader}
+            isLoading={props.leadersLoading}
+            errMess={props.leadersErrMess}
+          />
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import {
   Media
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../redux/baseUrl";
 
 const RenderLeader = props => {
   return (
@@ -16,7 +17,7 @@ const RenderLeader = props => {
       <div className="col-12 md-5">
         <Media teg="li">
           <Media left middle>
-            <Media object src={props.le.image} alt={props.le.name} />
+            <Media object src={baseUrl + props.le.image} alt={props.le.name} />
           </Media>
           <Media body className="col-10 ">
             <Media heading>{props.le.name} </Media>
